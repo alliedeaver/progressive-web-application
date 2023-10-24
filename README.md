@@ -9,6 +9,7 @@ Programs used in the creation of this application were javascript, webpack confi
 Click the link below!
 
 ## Screenshots 
+<img width="1433" alt="Screenshot 2023-10-24 at 3 10 45 PM" src="https://github.com/alliedeaver/progressive-web-application/assets/141384805/7f558ae4-7093-48bb-a030-8a8e85266758">
 
 
 ## Links
