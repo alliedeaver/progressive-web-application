@@ -26,13 +26,23 @@ warmStrategyCache({
 
 registerRoute(
   ({ request }) => request.mode === 'navigate', pageCache);
+
+registerRoute(
+  ({request}) =>
+  request.destination === 'images' ||
+  request.destination === 'css' ||
+  request.destination === 'js' ||
+
 new offlineFallback ({
   cacheName: 'asset-cache',
   plugins: [
     new CacheableResponsePlugin({
       statuses: [0, 200]
     }),
+    new ExpirationPlugin({
+      maxAgeSeconds: 30 * 24 * 60 * 60,
+    })
   ],
-}),
+})),
 // TODO: Implement asset caching
 registerRoute();

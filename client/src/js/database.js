@@ -1,7 +1,7 @@
 import { openDB } from 'idb';
 
 const initdb = async () =>
-//creatinga  new database that is named "jate" and uses version 1 of the database 
+  //creatinga  new database that is named "jate" and uses version 1 of the database 
   openDB('jate', 1, {
     upgrade(db) {
       //we add the database schema if its not already initialized
@@ -16,47 +16,51 @@ const initdb = async () =>
   });
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
-export const putDb = async (content) => console.error('putDb not implemented');
+export const putDb = async (content) => {
 
-const connectDb = await openDB('contact', 1);
-//creates connection to the database and the version we will use 
+  try {
+    const connectDb = await openDB('jate', 1);
+    //creates connection to the database and the version we will use 
 
-const transax = connectDb.transaction 
-('contact', 'readwrite');
-//creates a new transaction and is specific about the db and the privileges 
+    const transax = connectDb.transaction
+      ('contact', 'readwrite');
+    //creates a new transaction and is specific about the db and the privileges 
 
-const editor = transax.objectStore
-('contact');
-//opens the editor store
+    const editor = transax.objectStore
+      ('contact');
+    //opens the editor store
 
-  // Get the user input element.
-const input = document.querySelector('#user-input');
+    // Get the user input element.
+    const input = store.put({
+      id: 1,
+      value: content,
+    });
 
-// Add an event listener to the user input element.
-input.addEventListener('change', function(event) {
-  // Get the value of the user input element.
-  const inputValue = event.target.value;
+    await request;
 
-  const request = editor.add({text: inputValue});
-});
+    console.log('the database has the added content', content);
+  } catch (error) {
+    console.error('db not implemented', error);
+  }
+}
 
 // TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => { console.error('getDb not implemented');
+export const getDb = async () => {
+  console.error('getDb not implemented');
+  try {
+    const connectionDb = await openDB('jate', 1);
 
-const connectionDb = await openDB 
-('contact', 1);
+    const transaction = connectionDb.transaction('jate', 'readonly');
 
-const transaction = connectionDb.transaction
-('contact', 'readonly');
+    const edit = transaction.objectStore('jate');
 
-const edit = transaction.objectStore('contact');
+    const request = await edit.get(1);
 
-const request = edit.getAll();
-
-const result = await request;
-console.log('result.value', result);
-return result;
-
+    return request?.value;
+  } catch (error) {
+    console.error('Db not implemented', error);
+    return [];
+  }
 }
 
 initdb();
