@@ -23,15 +23,15 @@ export const putDb = async (content) => {
     //creates connection to the database and the version we will use 
 
     const transax = connectDb.transaction
-      ('contact', 'readwrite');
+      ('jate', 'readwrite');
     //creates a new transaction and is specific about the db and the privileges 
 
-    const editor = transax.objectStore
-      ('contact');
+    const store = transax.objectStore
+      ('jate');
     //opens the editor store
 
     // Get the user input element.
-    const input = store.put({
+    const request = store.put({
       id: 1,
       value: content,
     });
