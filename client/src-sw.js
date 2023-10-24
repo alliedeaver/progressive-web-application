@@ -29,11 +29,11 @@ registerRoute(
 
 registerRoute(
   ({request}) =>
-  request.destination === 'images' ||
-  request.destination === 'css' ||
-  request.destination === 'js' ||
+  request.destination === 'image' ||
+  request.destination === 'style' ||
+  request.destination === 'script',
 
-new offlineFallback ({
+new CacheFirst ({
   cacheName: 'asset-cache',
   plugins: [
     new CacheableResponsePlugin({
@@ -43,6 +43,6 @@ new offlineFallback ({
       maxAgeSeconds: 30 * 24 * 60 * 60,
     })
   ],
-})),
+}));
 // TODO: Implement asset caching
-registerRoute();
+// registerRoute();
